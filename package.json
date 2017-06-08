@@ -1,0 +1,12 @@
+{
+  "name": "idshortener",
+  "version": "0.0.3",
+  "description": "ID Shortener",
+  "main": "index.js",
+  "dependencies": {
+    "nan": "^2.0.0"
+  },
+  "scripts": {
+    "test": "node index.js"
+  }
+}
