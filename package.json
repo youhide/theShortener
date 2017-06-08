@@ -1,7 +1,7 @@
 {
-  "name": "idshortener",
+  "name": "theshortener",
   "version": "0.0.3",
-  "description": "ID Shortener",
+  "description": "String Shortener",
   "main": "index.js",
   "dependencies": {
     "nan": "^2.0.0"
