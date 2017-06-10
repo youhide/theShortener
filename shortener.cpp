@@ -30,7 +30,7 @@ string idToShortURL(long int n)
 }
 
 // Function to get integer ID back from a short url
-long int shortURLtoID(string URL)
+long int URLtoID(string URL)
 {
     long int id = 0; // initialize result
 
@@ -58,7 +58,7 @@ void Shortener(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 
     string foo = string(*param1);
 
-    int theID = shortURLtoID(foo);
+    int theID = URLtoID(foo);
     string shortURL = idToShortURL(theID);
 
     info.GetReturnValue().Set(Nan::New<v8::String>(shortURL).ToLocalChecked());
