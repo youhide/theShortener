@@ -66,7 +66,7 @@ void Shortener(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 }
 
 void Init(v8::Local<v8::Object> exports) {
-    exports->Set(Nan::New("id").ToLocalChecked(),
+    exports->Set(Nan::New("gen").ToLocalChecked(),
                  Nan::New<v8::FunctionTemplate>(Shortener)->GetFunction());
 }
 
