@@ -1,3 +1,5 @@
+build/
 shortener.cpp
 binding.gyp
-node_modules
+test.js
+local.test.js

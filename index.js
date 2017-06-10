@@ -1,4 +1,4 @@
-var shortener = require('./build/Release/shortener');
+var shortener = require('./shortener');
 
 exports.gen = function(url) {
   if(typeof url === 'undefined') return 0;

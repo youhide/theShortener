@@ -54,18 +54,14 @@ void Shortener(const Nan::FunctionCallbackInfo<v8::Value>& info) {
         return;
     }
 
-    // get the param
     v8::String::Utf8Value param1(info[0]->ToString());
 
-    // convert it to string
-    std::string foo = std::string(*param1);
+    string foo = string(*param1);
 
     int theID = shortURLtoID(foo);
     string shortURL = idToShortURL(theID);
 
-    const std::string s = shortURL;
-
-    info.GetReturnValue().Set(Nan::New<v8::String>(s).ToLocalChecked());
+    info.GetReturnValue().Set(Nan::New<v8::String>(shortURL).ToLocalChecked());
 
 }
 
