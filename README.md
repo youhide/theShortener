@@ -4,7 +4,7 @@ A Shortener
 
 ## Getting Started
 
-npm install --save theshortener
+BETA! Don't use on production.
 
 ## Usage
 ```javascript
