@@ -3,14 +3,13 @@
   "version": "0.0.6",
   "description": "String Shortener",
   "main": "index.js",
-  "dependencies": {
-    "nan": "^2.0.0"
-  },
+  "dependencies": {},
   "scripts": {
     "build": "node-gyp configure && node-gyp build && cp ./build/Release/shortener.node ./",
     "test": "ava"
   },
   "devDependencies": {
-    "ava": "^0.19.1"
+    "ava": "^0.19.1",
+    "nan": "^2.6.2"
   }
 }
