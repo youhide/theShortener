@@ -1,6 +1,6 @@
 {
   "name": "theshortener",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "String Shortener",
   "main": "index.js",
   "dependencies": {},
