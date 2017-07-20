@@ -9,6 +9,6 @@ BETA! Don't use on production.
 ## Usage
 ```javascript
 var theshortener = require('theshortener');
-console.log(yodaQuotes());
+console.log(theshortener.gen('google.com'));
 // bd2qnc
 ```
