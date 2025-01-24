@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [20.x, 21.x, 22.x]
+        include:
+          - os: ubuntu-latest
+            openssl-package: libssl-dev
+          - os: macos-latest
+            openssl-package: openssl
+          - os: windows-latest
+            openssl-package: openssl
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          
+      - name: Install OpenSSL (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ${{ matrix.openssl-package }}
+          
+      - name: Install OpenSSL (macOS)
+        if: matrix.os == 'macos-latest'
+        run: brew install ${{ matrix.openssl-package }}
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build
+        run: npm run build
+        
+      - name: Test
+        run: npm test

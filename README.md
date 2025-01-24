@@ -2,15 +2,51 @@
 
 # theShortener
 
-A Shortener
+A fast URL shortener that generates 8-character codes using SHA-256 and Base62 encoding, implemented as a native Node.js addon in C++.
 
-## Getting Started
+- Features
+- Fast native C++ implementation
+- Consistent 8-character outputs
+- Cryptographically secure using SHA-256
+- Base62 encoding (0-9, a-z, A-Z)
+- Deterministic results - same input produces same output
 
-BETA! Don't use on production.
+## Installation
+```bash
+npm install theshortener --save
+```
 
 ## Usage
 ```javascript
-var theshortener = require('theshortener');
-console.log(theshortener.gen('google.com'));
-// bd2qnc
+const shortener = require('theshortener');
+
+// Generate short code
+const shortCode = shortener.gen('https://google.com');
+console.log(shortCode); // Outputs: "Qhq1TQ2n"
 ```
+
+## Development
+#### Prerequisites:
+
+- Node.js
+- C++ compiler
+- OpenSSL development libraries
+
+#### Build from source:
+```bash
+npm run build
+```
+
+#### Run tests:
+```bash
+npm test
+```
+
+## Notes
+
+- Currently in BETA - not recommended for production use
+- The output is always 8 characters long
+- Uses OpenSSL for SHA-256 hashing
+
+## License
+DY - Dunno Yet

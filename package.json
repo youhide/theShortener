@@ -1,19 +1,29 @@
 {
   "name": "theshortener",
-  "version": "0.0.8",
+  "version": "1.0.0",
   "description": "String Shortener",
-  "main": "index.js",
-  "dependencies": {},
+  "main": "shortener.node",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build": "node-gyp configure && node-gyp build && cp ./build/Release/shortener.node ./",
     "test": "ava"
   },
   "devDependencies": {
-    "ava": "^0.19.1",
-    "nan": "^2.6.2"
+    "ava": "^6.2.0",
+    "nan": "^2.22.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/youhide/theShortener"
-  }
+  },
+  "keywords": [
+    "url-shortener",
+    "hash",
+    "sha256",
+    "base62",
+    "nodejs-addon"
+  ],
+  "author": "YouHide"
 }
