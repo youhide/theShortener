@@ -34,16 +34,28 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt-get update
-          sudo apt-get install -y ${{ matrix.openssl-package }}
+          sudo apt-get install -y libssl-dev build-essential
           
       - name: Install OpenSSL (macOS)
         if: matrix.os == 'macos-latest'
-        run: brew install ${{ matrix.openssl-package }}
+        run: |
+          brew install openssl@3
+          echo 'export PATH="/usr/local/opt/openssl@3/bin:$PATH"' >> ~/.bash_profile
+          echo 'export LDFLAGS="-L/usr/local/opt/openssl@3/lib"' >> ~/.bash_profile
+          echo 'export CPPFLAGS="-I/usr/local/opt/openssl@3/include"' >> ~/.bash_profile
+          source ~/.bash_profile
+
+      - name: Install OpenSSL (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          choco install openssl
           
       - name: Install dependencies
         run: npm ci
         
       - name: Build
+        env:
+          OPENSSL_ROOT_DIR: ${{ matrix.os == 'macos-latest' && '/usr/local/opt/openssl@3' || '' }}
         run: npm run build
         
       - name: Test
