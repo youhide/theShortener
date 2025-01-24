@@ -1,7 +1,5 @@
-import test from 'ava';
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const shortener = require('./build/Release/shortener');
+const test = require('ava');
+const shortener = require('./');
 
 const TEST_URLS = [
     'google.com',
