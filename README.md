@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/theshortener.svg)](https://www.npmjs.com/package/theshortener)
+[![CI](https://github.com/youhide/theShortener/actions/workflows/ci.yml/badge.svg)](https://github.com/youhide/theShortener/actions/workflows/ci.yml) [![NPM Publish](https://github.com/youhide/theShortener/actions/workflows/publish.yml/badge.svg)](https://github.com/youhide/theShortener/actions/workflows/publish.yml) [![npm version](https://badge.fury.io/js/theshortener.svg)](https://www.npmjs.com/package/theshortener)
 
 # theShortener
 
