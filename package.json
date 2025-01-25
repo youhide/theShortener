@@ -1,10 +1,13 @@
 {
   "name": "theshortener",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "String Shortener",
   "main": "shortener.node",
   "engines": {
     "node": ">=20"
+  },
+  "bin": {
+    "theshortener": "./cli.js"
   },
   "scripts": {
     "build": "node-gyp configure && node-gyp build && cp ./build/Release/shortener.node ./",
