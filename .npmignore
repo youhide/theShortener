@@ -1,6 +1,4 @@
 build/
-shortener.cpp
-binding.gyp
 test.js
 run.js
 local.test.js
