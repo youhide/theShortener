@@ -1,8 +1,8 @@
 {
   "name": "theshortener",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "String Shortener",
-  "main": "shortener.node",
+  "main": "./build/Release/shortener.node",
   "engines": {
     "node": ">=20"
   },
@@ -10,7 +10,7 @@
     "theshortener": "./cli.js"
   },
   "scripts": {
-    "build": "node-gyp configure && node-gyp build && cp ./build/Release/shortener.node ./",
+    "build": "node-gyp configure && node-gyp build",
     "test": "ava"
   },
   "devDependencies": {
