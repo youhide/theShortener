@@ -28,7 +28,7 @@ console.log(shortCode); // Outputs: "Qhq1TQ2n"
 ## CLI Usage
 ### Install globally:
 ```bash
-npm install theshortener --save
+npm i -g theshortener
 ```
 Use from command line:
 ```bash
