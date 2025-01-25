@@ -4,7 +4,7 @@
 
 A fast string shortener that generates 8-character codes using SHA-256 and Base62 encoding, implemented as a native Node.js addon in C++.
 
-- Features
+## Features
 - Fast native C++ implementation
 - Consistent 8-character outputs
 - Cryptographically secure using SHA-256
