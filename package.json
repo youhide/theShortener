@@ -1,6 +1,6 @@
 {
   "name": "theshortener",
-  "version": "1.0.2",
+  "version": "1.0.21",
   "description": "String Shortener",
   "main": "./build/Release/shortener.node",
   "engines": {
@@ -13,9 +13,11 @@
     "build": "node-gyp configure && node-gyp build",
     "test": "ava"
   },
-  "devDependencies": {
-    "ava": "^6.2.0",
+  "dependencies": {
     "nan": "^2.22.0"
+  },  
+  "devDependencies": {
+    "ava": "^6.2.0"
   },
   "repository": {
     "type": "git",
