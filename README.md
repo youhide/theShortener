@@ -33,6 +33,7 @@ npm install theshortener --save
 Use from command line:
 ```bash
 theshortener https://google.com
+Qhq1TQ2n
 ```
 
 ## Development
