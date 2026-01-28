@@ -17,7 +17,8 @@
         "cflags_cc": [ "-fexceptions" ]
       }],
       ["OS=='mac'", {
-        "libraries": [ "-lcrypto" ],
+        "libraries": [ "-L/opt/homebrew/opt/openssl/lib", "-lcrypto" ],
+        "include_dirs": [ "/opt/homebrew/opt/openssl/include" ],
         "xcode_settings": {
           "GCC_ENABLE_CPP_EXCEPTIONS": "YES",
           "MACOSX_DEPLOYMENT_TARGET": "11.0",

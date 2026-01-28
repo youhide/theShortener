@@ -53,12 +53,18 @@ npm run build
 npm test
 ```
 
+## TypeScript
+```typescript
+import shortener from 'theshortener';
+
+const code: string = shortener.gen('https://google.com');
+```
+
 ## Notes
 
-- Currently in BETA - not recommended for production use
 - The output is always 8 characters long
 - Uses OpenSSL for SHA-256 hashing
 - This is a one-way hashing implementation. Reverse lookups (getting original STR from short code) require storing STR-to-hash mappings in a database.
 
 ## License
-DY - Dunno Yet
+MIT

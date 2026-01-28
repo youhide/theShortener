@@ -1,5 +1,5 @@
 .github/
 build/
 test.js
-run.js
 local.test.js
+CHANGELOG.md
