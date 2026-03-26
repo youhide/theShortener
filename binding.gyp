@@ -3,11 +3,12 @@
     "target_name": "shortener",
     "sources": [ "shortener.cpp" ],
     "include_dirs": [
-      "<!(node -e \"require('nan')\")"
+      "<!@(node -p \"require('node-addon-api').include\")"
     ],
+    "defines": [ "NAPI_DISABLE_CPP_EXCEPTIONS" ],
     "conditions": [
       ["OS=='win'", {
-        "libraries": [ "libeay32.lib" ],
+        "libraries": [ "-llibcrypto" ],
         "include_dirs": [ "$(OPENSSL_ROOT)/include" ],
         "library_dirs": [ "$(OPENSSL_ROOT)/lib" ]
       }],

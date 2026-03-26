@@ -2,4 +2,8 @@
 build/
 test.js
 local.test.js
+bench.js
 CHANGELOG.md
+.editorconfig
+.eslintrc.cjs
+.gitignore

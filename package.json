@@ -1,9 +1,15 @@
 {
   "name": "theshortener",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "String Shortener",
-  "main": "./build/Release/shortener.node",
+  "main": "./index.js",
   "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js"
+    }
+  },
   "engines": {
     "node": ">=20"
   },
@@ -11,15 +17,19 @@
     "theshortener": "cli.js"
   },
   "scripts": {
-    "install": "node-gyp rebuild",
+    "install": "node-gyp-build",
     "build": "node-gyp configure && node-gyp build",
-    "test": "ava"
+    "prebuild": "prebuildify --napi --strip",
+    "test": "ava",
+    "bench": "node bench.js"
   },
   "dependencies": {
-    "nan": "^2.22.0"
+    "node-addon-api": "^8.0.0",
+    "node-gyp-build": "^4.8.0"
   },
   "devDependencies": {
-    "ava": "^6.2.0"
+    "ava": "^6.2.0",
+    "prebuildify": "^6.0.0"
   },
   "repository": {
     "type": "git",
@@ -30,7 +40,9 @@
     "hash",
     "sha256",
     "base62",
-    "nodejs-addon"
+    "nodejs-addon",
+    "native",
+    "napi"
   ],
   "license": "MIT",
   "author": "YouHide"
