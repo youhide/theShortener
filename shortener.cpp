@@ -13,6 +13,54 @@ static constexpr size_t MAX_INPUT_SIZE = 65536;
 static constexpr size_t SHA256_HASH_SIZE = 32;
 static constexpr size_t HASH_PREFIX_BYTES = 8;
 
+// Portable 128-bit unsigned integer (works on MSVC, GCC, Clang)
+struct uint128_t
+{
+    uint64_t hi;
+    uint64_t lo;
+
+    uint128_t() : hi(0), lo(0) {}
+    uint128_t(uint64_t h, uint64_t l) : hi(h), lo(l) {}
+
+    bool isZero() const { return hi == 0 && lo == 0; }
+
+    // Left shift by 8 bits
+    uint128_t shl8() const
+    {
+        return uint128_t((hi << 8) | (lo >> 56), lo << 8);
+    }
+
+    // OR with a byte
+    uint128_t orByte(unsigned char b) const
+    {
+        return uint128_t(hi, lo | b);
+    }
+
+    // Divide by divisor, return quotient and remainder
+    int divmod(int divisor)
+    {
+        // Split into high and low parts for division
+        // hi:lo / divisor
+        uint64_t rhi = hi % static_cast<uint64_t>(divisor);
+        uint64_t qhi = hi / static_cast<uint64_t>(divisor);
+
+        // Combine remainder with lo: (rhi << 64 + lo) / divisor
+        // Process in two 32-bit steps to avoid overflow
+        uint64_t mid = (rhi << 32) | (lo >> 32);
+        uint64_t qmid = mid / static_cast<uint64_t>(divisor);
+        uint64_t rmid = mid % static_cast<uint64_t>(divisor);
+
+        uint64_t low = (rmid << 32) | (lo & 0xFFFFFFFF);
+        uint64_t qlow = low / static_cast<uint64_t>(divisor);
+        int remainder = static_cast<int>(low % static_cast<uint64_t>(divisor));
+
+        hi = qhi;
+        lo = (qmid << 32) | qlow;
+
+        return remainder;
+    }
+};
+
 // Compute SHA-256 and return raw 32-byte digest
 static bool sha256(const std::string &input, std::array<unsigned char, SHA256_HASH_SIZE> &out)
 {
@@ -40,7 +88,7 @@ static bool sha256(const std::string &input, std::array<unsigned char, SHA256_HA
 static std::string encodeBase62(const std::array<unsigned char, SHA256_HASH_SIZE> &hash, int length)
 {
     // For length <= 10, 8 bytes (64 bits) of entropy is sufficient
-    // For length > 10, use 16 bytes (128 bits) via __uint128_t
+    // For length > 10, use 16 bytes (128 bits) for more entropy
     std::string encoded;
 
     if (length <= 10)
@@ -60,16 +108,16 @@ static std::string encodeBase62(const std::array<unsigned char, SHA256_HASH_SIZE
     else
     {
         // Use 16 bytes for longer outputs (up to 22 base62 chars)
-        __uint128_t num = 0;
+        uint128_t num;
         for (size_t i = 0; i < 16; i++)
         {
-            num = (num << 8) | hash[i];
+            num = num.shl8().orByte(hash[i]);
         }
 
-        while (num > 0)
+        while (!num.isZero())
         {
-            encoded.push_back(ALPHABET[static_cast<int>(num % BASE)]);
-            num /= BASE;
+            int remainder = num.divmod(BASE);
+            encoded.push_back(ALPHABET[remainder]);
         }
     }
 
