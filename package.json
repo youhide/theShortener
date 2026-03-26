@@ -19,7 +19,7 @@
   "scripts": {
     "install": "node-gyp-build",
     "build": "node-gyp configure && node-gyp build",
-    "prebuild": "prebuildify --napi --strip",
+    "make-prebuilds": "prebuildify --napi --strip",
     "test": "ava",
     "bench": "node bench.js"
   },
