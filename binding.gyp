@@ -10,7 +10,12 @@
       ["OS=='win'", {
         "libraries": [ "-llibcrypto" ],
         "include_dirs": [ "$(OPENSSL_ROOT)/include" ],
-        "library_dirs": [ "$(OPENSSL_ROOT)/lib" ]
+        "library_dirs": [
+          "$(OPENSSL_ROOT)/lib",
+          "$(OPENSSL_ROOT)/lib/VC",
+          "$(OPENSSL_ROOT)/lib/VC/x64/MD",
+          "$(OPENSSL_ROOT)/lib/VC/x64/MT"
+        ]
       }],
       ["OS=='linux'", {
         "libraries": [ "-lcrypto" ],
