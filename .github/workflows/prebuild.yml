@@ -44,18 +44,11 @@ jobs:
 
       - name: Install OpenSSL (Windows)
         if: runner.os == 'Windows'
-        run: choco install openssl -y
-        shell: cmd
+        run: vcpkg install openssl:x64-windows
 
       - name: Set OpenSSL env (Windows)
         if: runner.os == 'Windows'
-        run: |
-          $root = "C:\Program Files\OpenSSL-Win64"
-          echo "OPENSSL_ROOT=$root" >> $env:GITHUB_ENV
-          # Copy libs to root/lib so node-gyp can find them
-          Get-ChildItem -Path "$root\lib" -Recurse -Filter "libcrypto*" | ForEach-Object {
-            Copy-Item $_.FullName -Destination "$root\lib\" -Force -ErrorAction SilentlyContinue
-          }
+        run: echo "OPENSSL_ROOT=$env:VCPKG_INSTALLATION_ROOT\installed\x64-windows" >> $env:GITHUB_ENV
         shell: pwsh
 
       - name: Install dependencies
