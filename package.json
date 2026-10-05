@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "ava": "^7.0.0",
+    "node-gyp": "^12.4.0",
     "prebuildify": "^6.0.0"
   },
   "repository": {
